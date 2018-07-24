@@ -1,0 +1,2 @@
+import-csv .\smtp.csv | foreach{get-mailboxstatistics -id $_.primarysmtpaddress | Select-Object DisplayName, @{name="TotalItemSize (GB)";expression={[math]::Round((($_.TotalItemSize.Value.ToString()).Split("(")[1].Split(" ")[0].Replace(",","")/1GB),2)}}, @{name="TotalDeletedItemSize (GB)";expression={[math]::Round((($_.TotalDeletedItemSize.Value.ToString()).Split("(")[1].Split(" ")[0].Replace(",","")/1GB),2)}},ItemCount | Sort "TotalItemSize
+(GB)" -Descending} | export-csv filename.csv
