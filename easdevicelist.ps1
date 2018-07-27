@@ -1,0 +1,1 @@
+import-csv easalias2.csv | foreach {Get-Mailbox $_.alias}| foreach {Get-ActiveSyncDeviceStatistics  -mailbox $_.alias} | select identity, devicemodel, LastSuccessSync | export-csv eas-devicelisy.csv | sort lastsuccessSync -Ascending
