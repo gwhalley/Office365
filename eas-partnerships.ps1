@@ -1,0 +1,1 @@
+Get-CASMailbox -resultsize unlimited -Filter {HasActiveSyncDevicePartnership -eq $true -and -not DisplayName -like "CAS_{*"} | select primarysmtpaddress | export-csv easusers.csv
